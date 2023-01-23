@@ -19,5 +19,12 @@ public class Condition {
     @ManyToOne
     private View view;
 
+    @ManyToOne
+    private Attribute attribute;
+
+    private String operator;
+
+    private String value;
+
 
 }
