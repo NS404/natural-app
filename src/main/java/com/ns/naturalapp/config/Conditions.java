@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Condition {
+public class Conditions {
 
 
     @Id

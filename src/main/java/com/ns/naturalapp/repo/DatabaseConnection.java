@@ -1,4 +1,4 @@
-package com.ns.naturalapp;
+package com.ns.naturalapp.repo;
 
 import java.sql.*;
 

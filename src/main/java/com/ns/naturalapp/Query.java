@@ -1,12 +1,13 @@
 package com.ns.naturalapp;
 
 import com.ns.naturalapp.config.Attribute;
-import com.ns.naturalapp.config.Condition;
+import com.ns.naturalapp.config.Conditions;
 import com.ns.naturalapp.config.View;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,14 +18,14 @@ public class Query {
 
     private View view;
     private List<Attribute> attributes;
-    private Condition condition;
+    private Conditions conditions;
     private String queryString;
 
-    public Query(View view, List<Attribute> attributes, Condition condition) {
+    public Query(View view, List<Attribute> attributes, Conditions conditions) {
         this.view = view;
         this.attributes = attributes;
-        this.condition = condition;
-        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + " WHERE " + getCondition();
+        this.conditions = conditions;
+        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + " WHERE " + getConditions();
     }
 
     private String getTable() {
@@ -35,8 +36,18 @@ public class Query {
                 .map(Attribute::toString)
                 .collect(Collectors.joining(" "));
     }
-    private String getCondition() {
-        return this.condition.getAttribute().toString() +
-                this.condition.getOperator() + this.condition.getValue();
+    private String getConditions() {
+        return this.conditions.getAttribute().toString() +
+                this.conditions.getOperator() + this.conditions.getValue();
+    }
+
+    public List<String> getColumnNamesAsList() {
+        List<String> columnNames = new ArrayList<>();
+
+        for (Attribute a :
+                this.attributes) {
+            columnNames.add(a.getName());
+        }
+        return columnNames;
     }
 }

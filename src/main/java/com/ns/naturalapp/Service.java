@@ -1,24 +1,41 @@
 package com.ns.naturalapp;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.ns.naturalapp.config.View;
+import com.ns.naturalapp.repo.JDBCEntityRepository;
+import com.ns.naturalapp.repo.ViewRepository;
+import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+import java.util.Optional;
+
+@org.springframework.stereotype.Service
+@RequiredArgsConstructor
 public class Service {
 
-
-    public void method(Query query){
-
-        String queryString = query.getQueryString();
-
-        try(ResultSet resultSet = DatabaseConnection.selectAction(queryString)) {
-
-            while(resultSet.next()) {
+    private List<View> views;
+    private final ViewRepository viewRepo;
+    private final JDBCEntityRepository entityRepo;
 
 
-            }
+    public void getView(long viewId){
+        Optional<View> optionalView = viewRepo.findById(viewId);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if(optionalView.isPresent()){
+            View view = optionalView.get();
+            Query query = new Query(view, view.getAttributes(), view.getCondition());
+            entityRepo.getEntity(query);
         }
+
+
     }
+
+
+
+
+
+
+
+
+
+
 }
