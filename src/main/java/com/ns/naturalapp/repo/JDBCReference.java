@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class JDBC {
+public class JDBCReference {
 
     public void jdbc() {
 
@@ -128,7 +128,8 @@ public class JDBC {
                 System.out.println(tableResultSet.getString("TABLE_NAME"));
             }
 
-            ResultSetMetaData rsmd = tableResultSet.getMetaData(); //Metadata about ResultSet
+            ResultSet resultSet = null; //not null of course
+            ResultSetMetaData rsmd = resultSet.getMetaData(); //Metadata about a ResultSet
             int nrColumns = rsmd.getColumnCount();
 
             IntStream.range(1, nrColumns).forEach(i -> {

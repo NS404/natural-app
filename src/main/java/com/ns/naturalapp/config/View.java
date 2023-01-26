@@ -17,9 +17,9 @@ public class View {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "view",fetch = FetchType.EAGER)
     private List<Attribute> attributes;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "view",fetch = FetchType.EAGER)
     private Conditions condition;
 
     @Override

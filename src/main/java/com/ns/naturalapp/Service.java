@@ -17,16 +17,15 @@ public class Service {
     private final JDBCEntityRepository entityRepo;
 
 
-    public void getView(long viewId){
+    public EntityDTO getView(long viewId){
         Optional<View> optionalView = viewRepo.findById(viewId);
 
         if(optionalView.isPresent()){
             View view = optionalView.get();
-            Query query = new Query(view, view.getAttributes(), view.getCondition());
-            entityRepo.getEntity(query);
+            Query query = new Query(view);
+            return entityRepo.getEntity(query);
         }
-
-
+        return null;
     }
 
 

@@ -10,10 +10,10 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Entity {
+public class EntityDTO {
 
     private String name;
     private List<String> attributeTitles;
-    private Map<Long, List<String>> attributeValuesById;
+    private Map<Long, List<Object>> attributeValuesById;
 
 }

@@ -17,8 +17,8 @@ public class Controller {
 
 
     @GetMapping("/views/{id}")
-    public ResponseEntity<?> getEntity(@PathVariable String id) {
-
-        return null;
+    public ResponseEntity<EntityDTO> getEntity(@PathVariable String id) {
+        EntityDTO entityDTO = service.getView(Long.parseLong(id));
+        return ResponseEntity.ok().body(entityDTO);
     }
 }

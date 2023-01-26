@@ -16,7 +16,7 @@ public class Conditions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @OneToOne
     private View view;
 
     @ManyToOne
@@ -26,5 +26,14 @@ public class Conditions {
 
     private String value;
 
-
+    @Override
+    public String toString() {
+        return "Conditions{" +
+                "id=" + id +
+                ", view=" + view +
+                ", attribute=" + attribute +
+                ", operator='" + operator + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

@@ -18,14 +18,14 @@ public class Query {
 
     private View view;
     private List<Attribute> attributes;
-    private Conditions conditions;
+    private Conditions condition;
     private String queryString;
 
-    public Query(View view, List<Attribute> attributes, Conditions conditions) {
+    public Query(View view) {
         this.view = view;
-        this.attributes = attributes;
-        this.conditions = conditions;
-        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + " WHERE " + getConditions();
+        this.attributes = view.getAttributes();
+        this.condition = view.getCondition();
+        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + " WHERE " + getCondition();
     }
 
     private String getTable() {
@@ -34,11 +34,11 @@ public class Query {
     private String getColumns() {
         return this.attributes.stream()
                 .map(Attribute::toString)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(", "));
     }
-    private String getConditions() {
-        return this.conditions.getAttribute().toString() +
-                this.conditions.getOperator() + this.conditions.getValue();
+    private String getCondition() {
+        return this.condition.getAttribute().toString() +
+                this.condition.getOperator() + this.condition.getValue();
     }
 
     public List<String> getColumnNamesAsList() {
