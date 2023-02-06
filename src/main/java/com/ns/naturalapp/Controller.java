@@ -2,10 +2,7 @@ package com.ns.naturalapp;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @org.springframework.stereotype.Controller
 @RestController
@@ -16,9 +13,10 @@ public class Controller {
     private final Service service;
 
 
-    @GetMapping("/views/{id}")
-    public ResponseEntity<EntityDTO> getEntity(@PathVariable String id) {
-        EntityDTO entityDTO = service.getView(Long.parseLong(id));
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/views/{name}")
+    public ResponseEntity<EntityDTO> getEntity(@PathVariable String name) {
+        EntityDTO entityDTO = service.getView(name);
         return ResponseEntity.ok().body(entityDTO);
     }
 }

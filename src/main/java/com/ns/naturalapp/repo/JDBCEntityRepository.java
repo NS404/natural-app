@@ -6,9 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class JDBCEntityRepository {
@@ -23,7 +21,7 @@ public class JDBCEntityRepository {
         EntityDTO entity = new EntityDTO();
         entity.setName(query.getView().getName());
         entity.setAttributeTitles(query.getColumnNamesAsList());
-        Map<Long, List<Object>> attributeValuesById = new HashMap<>();
+        List<List<Object>> entities = new ArrayList<>();
 
 
         try(Connection connection = DriverManager.getConnection(URL,USER,PASS);
@@ -36,19 +34,16 @@ public class JDBCEntityRepository {
 
 
             while(resultSet.next()) {
-                long id = 0;
                 List<Object> attributeValues = new ArrayList<>();
                 
                 for (int i = 1; i <= metaData.getColumnCount(); i++) {
-                    if(metaData.isAutoIncrement(i)){
-                        id = resultSet.getLong(i);
-                    }else {
-                        attributeValues.add(resultSet.getObject(i));
-                    }
+                   attributeValues.add(resultSet.getObject(i));
                 }
-                attributeValuesById.put(id,attributeValues);
+                entities.add(attributeValues);
+
             }
-            entity.setAttributeValuesById(attributeValuesById);
+            entity.setAttributeValues(entities);
+
             return entity;
 
         } catch (SQLException e) {

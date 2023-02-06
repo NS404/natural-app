@@ -16,11 +16,9 @@ public class View {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(unique=true)
     private String name;
-    @OneToMany(mappedBy = "view",fetch = FetchType.EAGER)
-    private List<Attribute> attributes;
-    @OneToOne(mappedBy = "view",fetch = FetchType.EAGER)
-    private Conditions condition;
 
     @Override
     public String toString() {

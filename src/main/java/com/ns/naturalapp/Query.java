@@ -21,10 +21,10 @@ public class Query {
     private Conditions condition;
     private String queryString;
 
-    public Query(View view) {
+    public Query(View view, List<Attribute> attributes, Conditions condition) {
         this.view = view;
-        this.attributes = view.getAttributes();
-        this.condition = view.getCondition();
+        this.attributes = attributes;
+        this.condition = condition;
         this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + " WHERE " + getCondition();
     }
 
@@ -44,8 +44,7 @@ public class Query {
     public List<String> getColumnNamesAsList() {
         List<String> columnNames = new ArrayList<>();
 
-        for (Attribute a :
-                this.attributes) {
+        for (Attribute a : this.attributes) {
             columnNames.add(a.getName());
         }
         return columnNames;
