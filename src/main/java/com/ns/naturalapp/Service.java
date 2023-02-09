@@ -33,12 +33,7 @@ public class Service {
     }
 
 
-
-
-
-
-
-
-
-
+    public List<View> getAllViews() {
+        return viewRepo.findAll();
+    }
 }
