@@ -1,11 +1,9 @@
-package com.ns.naturalapp.config;
+package com.ns.naturalapp.Config;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

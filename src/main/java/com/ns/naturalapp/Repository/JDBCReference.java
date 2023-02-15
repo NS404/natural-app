@@ -1,4 +1,4 @@
-package com.ns.naturalapp.repo;
+package com.ns.naturalapp.Repository;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ public class JDBCReference {
 
     public void jdbc() {
 
-        try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/natural_app", "root", "root");
+        try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/natural_demo", "root", "root");
                 Statement stmt =con.createStatement() ){
 
             String sqlStatement = "CREATE TABLE IF NOT EXISTS employees " +

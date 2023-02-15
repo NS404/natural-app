@@ -1,4 +1,4 @@
-package com.ns.naturalapp;
+package com.ns.naturalapp.DTO;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class EntityDTO {
-
 
     private String name;
     private List<String> attributeTitles;

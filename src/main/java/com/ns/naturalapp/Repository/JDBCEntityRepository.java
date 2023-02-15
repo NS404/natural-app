@@ -1,7 +1,7 @@
-package com.ns.naturalapp.repo;
+package com.ns.naturalapp.Repository;
 
-import com.ns.naturalapp.EntityDTO;
-import com.ns.naturalapp.Query;
+import com.ns.naturalapp.DTO.EntityDTO;
+import com.ns.naturalapp.DTO.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class JDBCEntityRepository {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/natural_app";
+    private static final String URL = "jdbc:mysql://localhost:3307/natural_demo";
     private static final String USER = "root";
     private static final String PASS = "root";
 

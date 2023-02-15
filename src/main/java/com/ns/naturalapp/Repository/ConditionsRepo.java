@@ -1,8 +1,9 @@
-package com.ns.naturalapp.repo;
+package com.ns.naturalapp.Repository;
 
-import com.ns.naturalapp.config.Conditions;
-import com.ns.naturalapp.config.View;
+import com.ns.naturalapp.Config.Conditions;
+import com.ns.naturalapp.Config.View;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ConditionsRepo extends JpaRepository<Conditions, Long> {
 
