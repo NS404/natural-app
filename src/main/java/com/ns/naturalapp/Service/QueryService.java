@@ -19,13 +19,12 @@ import java.util.List;
 public class QueryService implements QueryServiceInterface {
     private final String defaultLimit = "3";
     private final String defaultOffset = "0";
-
     private final ViewRepository viewRepo;
     private final AttributeRepo attributeRepo;
     private final ConditionsRepo conditionsRepo;
     private final JDBCEntityRepository entityRepo;
 
-    public EntityDTO getView(String name, String limit, String offset){
+    public EntityDTO getView(String name, String limit, String offset, String[] requestConditions){
 
         if(limit == null || limit == ""){
              limit = defaultLimit;
@@ -33,10 +32,21 @@ public class QueryService implements QueryServiceInterface {
         if(offset == null || offset == ""){
             offset = defaultOffset;
         }
-        View view = viewRepo.findViewByName(name);
-        List<Attribute> attributes = attributeRepo.findAttributesByView(view);
-        Conditions condition = conditionsRepo.findConditionsByView(view);
-        Query query = new Query(view, attributes, condition, limit, offset);
-        return entityRepo.getEntity(query);
+
+            View view = viewRepo.findViewByName(name);
+            List<Attribute> attributes = attributeRepo.findAttributesByView(view);
+            Conditions condition = conditionsRepo.findConditionsByView(view);
+            Query query = new Query(view, attributes, condition, limit, offset,requestConditions);
+            return entityRepo.getEntity(query);
+    }
+
+    public String[] parseConditions(String requestConditions ){
+        if(requestConditions == "" || requestConditions == null){
+            String[] empty = {};
+            return empty;
+        }
+        String regex = ",";
+        String[] conditions = requestConditions.split(regex);
+        return conditions;
     }
 }

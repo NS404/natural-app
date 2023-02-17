@@ -7,22 +7,26 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @org.springframework.stereotype.Controller
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class QueryController {
 
-    private final QueryService service;
+    private final QueryService queryService;
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/views")
     public ResponseEntity<EntityDTO> getEntity(
             @RequestBody GetViewDTO body,
             @RequestParam(required = false) String limit,
-            @RequestParam(required = false) String offset) {
-        EntityDTO entityDTO = service.getView(body.getName(), limit, offset);
+            @RequestParam(required = false) String offset,
+            @RequestParam (required = false) String requestConditions) {
+        String[] stringConditions = queryService.parseConditions(requestConditions);
+        EntityDTO entityDTO = queryService.getView(body.getName(), limit, offset, stringConditions);
+
         return ResponseEntity.ok().body(entityDTO);
     }
+
+
+
 }
