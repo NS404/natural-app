@@ -1,8 +1,8 @@
-package com.ns.naturalapp.repo;
+package com.ns.naturalapp.Repository;
 
 import com.ns.naturalapp.EntityDTO;
 import com.ns.naturalapp.Query;
-import com.ns.naturalapp.config.Attribute;
+import com.ns.naturalapp.Config.Attribute;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;

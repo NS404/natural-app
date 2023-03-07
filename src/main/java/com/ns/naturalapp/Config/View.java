@@ -1,21 +1,25 @@
-package com.ns.naturalapp.config;
+package com.ns.naturalapp.Config;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
-public class Conditions {
-
+public class View {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
-    private View view;
-    private String conditionString;
+
+    @Column(unique=true)
+    private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

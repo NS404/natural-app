@@ -1,8 +1,8 @@
 package com.ns.naturalapp;
 
-import com.ns.naturalapp.config.Attribute;
-import com.ns.naturalapp.config.Conditions;
-import com.ns.naturalapp.config.View;
+import com.ns.naturalapp.Config.Attribute;
+import com.ns.naturalapp.Config.Conditions;
+import com.ns.naturalapp.Config.View;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

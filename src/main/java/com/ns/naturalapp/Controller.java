@@ -1,6 +1,6 @@
 package com.ns.naturalapp;
 
-import com.ns.naturalapp.config.View;
+import com.ns.naturalapp.Config.View;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

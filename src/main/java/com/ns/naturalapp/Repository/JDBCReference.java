@@ -1,4 +1,4 @@
-package com.ns.naturalapp.repo;
+package com.ns.naturalapp.Repository;
 
 import lombok.Data;
 

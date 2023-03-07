@@ -1,16 +1,15 @@
 package com.ns.naturalapp;
 
-import com.ns.naturalapp.config.Attribute;
-import com.ns.naturalapp.config.Conditions;
-import com.ns.naturalapp.config.View;
-import com.ns.naturalapp.repo.AttributeRepo;
-import com.ns.naturalapp.repo.ConditionsRepo;
-import com.ns.naturalapp.repo.JDBCEntityRepository;
-import com.ns.naturalapp.repo.ViewRepository;
+import com.ns.naturalapp.Config.Attribute;
+import com.ns.naturalapp.Config.Conditions;
+import com.ns.naturalapp.Config.View;
+import com.ns.naturalapp.Repository.AttributeRepo;
+import com.ns.naturalapp.Repository.ConditionsRepo;
+import com.ns.naturalapp.Repository.JDBCEntityRepository;
+import com.ns.naturalapp.Repository.ViewRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor

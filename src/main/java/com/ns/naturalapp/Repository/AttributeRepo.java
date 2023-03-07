@@ -1,7 +1,7 @@
-package com.ns.naturalapp.repo;
+package com.ns.naturalapp.Repository;
 
-import com.ns.naturalapp.config.Attribute;
-import com.ns.naturalapp.config.View;
+import com.ns.naturalapp.Config.Attribute;
+import com.ns.naturalapp.Config.View;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
