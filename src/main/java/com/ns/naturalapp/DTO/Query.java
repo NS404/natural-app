@@ -1,4 +1,4 @@
-package com.ns.naturalapp;
+package com.ns.naturalapp.DTO;
 
 import com.ns.naturalapp.Config.Attribute;
 import com.ns.naturalapp.Config.Conditions;
@@ -21,11 +21,11 @@ public class Query {
     private Conditions condition;
     private String queryString;
 
-    public Query(View view, List<Attribute> attributes, Conditions condition) {
+    public Query(View view, List<Attribute> attributes, Conditions condition, String limit, String offset) {
         this.view = view;
         this.attributes = attributes;
         this.condition = condition;
-        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + getCondition();
+        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + getCondition()  + " LIMIT " + limit + " OFFSET " + offset;
     }
 
     private String getTable() {
