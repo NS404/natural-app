@@ -9,4 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GetViewDTO {
     public String name;
+    public String limit;
+    public String offset;
+    public String requestConditions;
 }
