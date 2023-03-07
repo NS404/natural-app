@@ -25,7 +25,7 @@ public class Query {
         this.view = view;
         this.attributes = attributes;
         this.condition = condition;
-        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + " WHERE " + getCondition();
+        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + getCondition();
     }
 
     private String getTable() {
@@ -37,8 +37,10 @@ public class Query {
                 .collect(Collectors.joining(", "));
     }
     private String getCondition() {
-        return this.condition.getAttribute().toString() +
-                this.condition.getOperator() + this.condition.getValue();
+        if(condition != null)
+            return " WHERE " + condition.getConditionString();
+        else
+            return "";
     }
 
     public List<String> getColumnNamesAsList() {
