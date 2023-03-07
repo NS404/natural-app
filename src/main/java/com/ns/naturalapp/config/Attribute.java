@@ -19,6 +19,8 @@ public class Attribute {
 
     private String name;
 
+    private String formattingString;
+
     @Override
     public String toString() {
         return name;

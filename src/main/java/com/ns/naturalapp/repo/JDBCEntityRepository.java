@@ -2,9 +2,12 @@ package com.ns.naturalapp.repo;
 
 import com.ns.naturalapp.EntityDTO;
 import com.ns.naturalapp.Query;
+import com.ns.naturalapp.config.Attribute;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,10 +40,19 @@ public class JDBCEntityRepository {
                 List<Object> attributeValues = new ArrayList<>();
                 
                 for (int i = 1; i <= metaData.getColumnCount(); i++) {
-                   attributeValues.add(resultSet.getObject(i));
+
+                    if(metaData.getColumnType(i) == Types.TIMESTAMP){
+                        String columnName = metaData.getColumnName(i);
+                        Attribute attribute = query.getAttribute(columnName);
+                        String formattingString = attribute.getFormattingString();
+                        LocalDateTime date = resultSet.getTimestamp(i).toLocalDateTime();
+                        String formattedDate = date.format(DateTimeFormatter.ofPattern(formattingString));
+                        attributeValues.add(formattedDate);
+                        continue;
+                    }
+                    attributeValues.add(resultSet.getObject(i));
                 }
                 entities.add(attributeValues);
-
             }
             entity.setAttributeValues(entities);
 

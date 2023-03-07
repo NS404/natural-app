@@ -51,4 +51,12 @@ public class Query {
         }
         return columnNames;
     }
+    public Attribute getAttribute(String columnName) {
+        for (Attribute attribute : attributes) {
+            if (attribute.getName().equals(columnName)) {
+                return attribute;
+            }
+        }
+        return null;
+    }
 }
