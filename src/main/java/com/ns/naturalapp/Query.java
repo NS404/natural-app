@@ -41,6 +41,9 @@ public class Query {
                 this.condition.getOperator() + this.condition.getValue();
     }
 
+    private String getBlaBlaBla(){
+        return "blablabla";
+    }
     public List<String> getColumnNamesAsList() {
         List<String> columnNames = new ArrayList<>();
 
