@@ -1,5 +1,6 @@
 package com.ns.naturalapp.Repository;
 
+import com.ns.naturalapp.Config.Attribute;
 import com.ns.naturalapp.DTO.EntityDTO;
 import com.ns.naturalapp.DTO.Query;
 import org.springframework.stereotype.Repository;

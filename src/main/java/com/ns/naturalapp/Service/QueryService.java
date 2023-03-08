@@ -7,6 +7,8 @@ import com.ns.naturalapp.NaturalAppApplication;
 import com.ns.naturalapp.Repository.JDBCEntityRepository;
 import lombok.RequiredArgsConstructor;
 
+import static com.ns.naturalapp.NaturalAppApplication.initMap;
+
 
 @org.springframework.stereotype.Service
 @RequiredArgsConstructor
@@ -15,7 +17,7 @@ public class QueryService implements QueryServiceInterface {
     private final String defaultOffset = "0";
     private final JDBCEntityRepository entityRepo;
 
-    public EntityDTO getView(String name, String limit, String offset, String[] requestConditions) {
+    public EntityDTO getView(String name, String limit, String offset, String requestConditions) {
 
         if (limit == null || limit == "") {
             limit = defaultLimit;
@@ -23,18 +25,21 @@ public class QueryService implements QueryServiceInterface {
         if (offset == null || offset == "") {
             offset = defaultOffset;
         }
+        Query query;
 
-        Query query = new Query(NaturalAppApplication.initMap.get(name).getView(), NaturalAppApplication.initMap.get(name).getAttributes(), NaturalAppApplication.initMap.get(name).getCondition(), limit, offset, requestConditions);
+        if (requestConditions == "" || requestConditions == null) {
+            query = new Query(initMap.get(name).getView(),
+                    initMap.get(name).getAttributes(),
+                    initMap.get(name).getCondition(),
+                    limit, offset);
+        }else {
+            query = new Query(initMap.get(name).getView(),
+                    initMap.get(name).getAttributes(),
+                    requestConditions,limit,offset);
+        }
+
         return entityRepo.getEntity(query);
     }
 
-    public String[] parseConditions(String requestConditions) {
-        if (requestConditions == "" || requestConditions == null) {
-            String[] empty = {};
-            return empty;
-        }
-        String regex = ",";
-        String[] conditions = requestConditions.split(regex);
-        return conditions;
-    }
+
 }

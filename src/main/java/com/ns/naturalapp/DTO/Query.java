@@ -28,6 +28,13 @@ public class Query {
         this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + getCondition()  + " LIMIT " + limit + " OFFSET " + offset;
     }
 
+    public Query(View view, List<Attribute> attributes, String condition, String limit, String offset) {
+        this.view = view;
+        this.attributes = attributes;
+        String fullCondition = " WHERE " + condition;
+        this.queryString = "SELECT " + getColumns() + " FROM " + getTable() + fullCondition + " LIMIT " + limit + " OFFSET " + offset;
+    }
+
     private String getTable() {
         return this.view.toString();
     }

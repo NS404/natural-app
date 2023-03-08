@@ -14,9 +14,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootApplication
 public class NaturalAppApplication  {
@@ -24,31 +22,29 @@ public class NaturalAppApplication  {
     private final ViewRepository viewRepo;
     private final AttributeRepo attributeRepo;
     private final ConditionsRepo conditionsRepo;
-    private final JDBCEntityRepository entityRepo;
     public static Map<String, QueryElements> initMap;
 
-    public NaturalAppApplication(ViewRepository viewRepo, AttributeRepo attributeRepo, ConditionsRepo conditionsRepo, JDBCEntityRepository entityRepo, Map<String, QueryElements> initMap) {
+    public NaturalAppApplication(ViewRepository viewRepo, AttributeRepo attributeRepo, ConditionsRepo conditionsRepo) {
         this.viewRepo = viewRepo;
         this.attributeRepo = attributeRepo;
         this.conditionsRepo = conditionsRepo;
-        this.entityRepo = entityRepo;
-        this.initMap = initMap;
+        initMap = new HashMap<>();
     }
 
     public static void main(String[] args) {
         SpringApplication.run(NaturalAppApplication.class, args);
-        System.out.println(Arrays.asList(initMap));
+        System.out.println(Collections.singletonList(initMap));
     }
 
     @Bean
     public CommandLineRunner CommandLineRunnerBean() {
         return (args) -> {
             List<View> views = viewRepo.findAll();
-            views.stream().forEach(view -> {
+            views.forEach(view -> {
                 List<Attribute> attributes = attributeRepo.findAttributesByView(view);
                 Conditions condition = conditionsRepo.findConditionsByView(view);
                 initMap.put(view.getName(), new QueryElements(view, attributes, condition));
-            });;
+            });
             for (String arg : args) {
                 System.out.println(arg);
             }
